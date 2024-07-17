@@ -1,18 +1,131 @@
-# mymoviebloc
+# Content for the README.md file
 
-A new Flutter project.
+![Detail Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png)
+![List Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png)
+![Splash Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png)
+
+readme_content = """
+
+# MyMovieBloc
+
+MyMovieBloc is a Flutter application that provides detailed information about movies, including cast details, using the Bloc pattern for state management. The project is configured to use GitHub Actions for building and releasing APKs.
+
+## Design Inspiration
+
+[Figma](<https://www.figma.com/design/hK6NKZ5OtXQSsbD3Fgs1Dj/Movie-Mobile-App-UI-Design-(Community)?node-id=0-1&t=L1iPa1wuXgzsf5Ba-0>)
+
+## Features
+
+- Movie details with cast information
+- State management using Bloc
+- Automated APK release with GitHub Actions
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-[Figma](https://www.figma.com/design/hK6NKZ5OtXQSsbD3Fgs1Dj/Movie-Mobile-App-UI-Design-(Community)?node-id=0-1&t=L1iPa1wuXgzsf5Ba-0)
+- Flutter SDK: [Flutter installation guide](https://flutter.dev/docs/get-started/install)
+- Dart SDK
+- Android Studio or Visual Studio Code with Flutter extension
 
-A few resources to get you started if this is your first Flutter project:
+## GitHub Actions for APK Release
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This project uses GitHub Actions to automate the build and release process for the APKs. The workflow is triggered on push or merge to the \`main\` branch.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### commit with message [skip ci] will skip the github actions
+
+### Workflow Configuration
+
+The GitHub Actions workflow file is located at \`.github/workflows/release.yml\`. Below is the configuration used:
+
+\`\`\`yaml
+on:
+push:
+branches: - main
+paths-ignore: - "\*\*.md" # Ignores pushes that include '[skip ci]' or '[ci skip]' in the commit message
+ignore: - "[skip ci]" - "[ci skip]"
+pull_request:
+branches: - main
+
+name: Build My Apps
+
+jobs:
+build:
+if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+name: Build and Release new apk
+runs-on: ubuntu-latest
+steps: - uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "11"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release --split-per-abi
+
+      - name: Extract version from pubspec.yaml
+        id: extract_version
+        run: |
+          VERSION=$(grep 'version:' pubspec.yaml | sed 's/version: //')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            build/app/outputs/apk/release/app-armeabi-v7a-release.apk
+            build/app/outputs/apk/release/app-arm64-v8a-release.apk
+          tag: ${{ env.VERSION }}
+          token: ${{ secrets.TOKEN }}
+
+\`\`\`
+
+### Downloading the APK
+
+1. Go to the [Releases page](https://github.com/iqbalnova/MyMovieBloc/releases) of the repository.
+2. Download the latest APK file suitable for your device's architecture.
+
+### Preventing GitHub Actions from Running
+
+If you need to update the \`main\` branch without triggering the GitHub Actions workflow, you can add \`[skip ci]\` or \`[ci skip]\` to your commit message. For example:
+
+\`\`\`sh
+git commit -m "Update README [skip ci]"
+\`\`\`
+
+This will skip the workflow run for that particular commit.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (\`git checkout -b feature/your-feature\`).
+3. Make your changes.
+4. Commit your changes (\`git commit -m 'Add some feature'\`).
+5. Push to the branch (\`git push origin feature/your-feature\`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to explore and contribute to MyMovieBloc. Happy coding!
+"""
+
+# Write the content to README.md
+
+with open("/mnt/data/README.md", "w") as file:
+file.write(readme_content)

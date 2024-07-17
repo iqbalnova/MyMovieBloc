@@ -19,7 +19,7 @@ class GenreSectionWidget extends StatelessWidget {
             vertical: 4,
           ),
           decoration: BoxDecoration(
-            color: const Color(0XFF88A4E8),
+            color: const Color(0XFFDBE3FF),
             borderRadius: BorderRadius.circular(
               10,
             ),
@@ -27,7 +27,7 @@ class GenreSectionWidget extends StatelessWidget {
           child: Text(
             genreName,
             style: whiteTextStyle.merge(
-              smallStyle,
+              smallStyle.copyWith(color: const Color(0XFF88A4E8)),
             ),
           ),
         );

@@ -6,3 +6,12 @@ sealed class DetailMovieEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetDetailMovieEvent extends DetailMovieEvent {
+  final int movieId;
+
+  const GetDetailMovieEvent({required this.movieId});
+
+  @override
+  List<Object> get props => [movieId];
+}

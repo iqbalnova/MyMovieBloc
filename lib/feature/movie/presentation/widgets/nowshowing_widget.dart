@@ -74,7 +74,7 @@ class NowShowingSection extends StatelessWidget {
     required Function(int) onTap,
   }) {
     return Container(
-      height: 300.h,
+      height: 320.h,
       color: whiteColor,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -123,7 +123,7 @@ class NowShowingSection extends StatelessWidget {
                       Icon(Icons.star, color: yellowColor, size: 16.sp),
                       SizedBox(width: 4.w),
                       Text(
-                        '${nowShowing.voteAverage.toStringAsFixed(2)}/10',
+                        '${nowShowing.voteAverage.toStringAsFixed(1)}/10',
                         style: blackTextStyle.copyWith(color: greyColor),
                       ),
                     ],

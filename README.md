@@ -1,8 +1,10 @@
 # Content for the README.md file
 
-![Detail Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png)
-![List Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png)
-![Splash Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png)
+<p float="left">
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png" alt="Detail Screen" width="250" />
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png" alt="List Screen" width="250" /> 
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png" alt="Splash Screen" width="250" />
+</p>
 
 readme_content = """
 

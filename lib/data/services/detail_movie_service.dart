@@ -5,9 +5,9 @@ import 'package:mymoviebloc/data/models/movie/detail_movie.dart';
 class DetailMovieService {
   final ApiClient dio = GetIt.instance<ApiClient>();
 
-  Future<DetailMovieModel> getMovieNowPlaying() async {
+  Future<DetailMovieModel> getDetailMovie({required int movieId}) async {
     try {
-      final response = await dio.apiGet('/movie/now_playing');
+      final response = await dio.apiGet('/movie/$movieId');
 
       if (response.statusCode == 200) {
         final DetailMovieModel movieDetail = DetailMovieModel.fromJson(

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +5,7 @@ import 'package:mymoviebloc/data/models/movie/movie_model.dart';
 import 'package:mymoviebloc/feature/core/presentation/widgets/custom_button.dart';
 import 'package:mymoviebloc/feature/movie/bloc/movie_list_bloc.dart';
 import 'package:mymoviebloc/feature/movie/presentation/widgets/genre_section_widget.dart';
+import 'package:mymoviebloc/routes/app_routes.dart';
 import 'package:mymoviebloc/utils/credential.dart';
 import 'package:mymoviebloc/utils/styles.dart';
 
@@ -29,9 +29,10 @@ class PopularSection extends StatelessWidget {
                 return _popularTile(
                   dataPopularMovie: state.popularMovie,
                   onTap: (movieId) {
-                    if (kDebugMode) {
-                      print(movieId);
-                    }
+                    Navigator.pushNamed(context, AppRoutes.detailMovie,
+                        arguments: {
+                          'movieId': movieId,
+                        });
                   },
                 );
               } else if (state is MovieListFailed) {
@@ -128,7 +129,7 @@ class PopularSection extends StatelessWidget {
                           Icon(Icons.star, color: yellowColor, size: 16.sp),
                           SizedBox(width: 4.w),
                           Text(
-                            '${popularMovie.voteAverage.toStringAsFixed(2)}/10',
+                            '${popularMovie.voteAverage.toStringAsFixed(1)}/10',
                             style: blackTextStyle.copyWith(color: greyColor),
                           ),
                         ],

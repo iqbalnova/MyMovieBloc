@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mymoviebloc/data/models/cast/cast_model.dart';
 import 'package:mymoviebloc/data/models/movie/detail_movie.dart';
 import 'package:mymoviebloc/data/services/detail_movie_service.dart';
 
@@ -19,6 +20,23 @@ class DetailMovieBloc extends Bloc<DetailMovieEvent, DetailMovieState> {
         final detailMovieRes =
             await services.getDetailMovie(movieId: event.movieId);
         emit(DetailMovieSuccess(detailMovie: detailMovieRes));
+      } catch (e) {
+        if (e is DioException) {
+          emit(DetailMovieFailed(error: e.response?.data['error']));
+          return;
+        }
+        emit(DetailMovieFailed(error: e.toString()));
+      }
+    });
+
+    on<GetCastEvent>((event, emit) async {
+      emit(DetailMovieLoading());
+
+      try {
+        final castData = await services.getAllCast(
+          movieId: event.movieId,
+        );
+        emit(CastSuccess(castData: castData));
       } catch (e) {
         if (e is DioException) {
           emit(DetailMovieFailed(error: e.response?.data['error']));

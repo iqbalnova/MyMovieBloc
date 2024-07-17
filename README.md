@@ -1,8 +1,10 @@
 # Content for the README.md file
 
-![Detail Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png)
-![List Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png)
-![Splash Screen](https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png)
+<p float="left">
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png" alt="Detail Screen" width="250" />
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png" alt="List Screen" width="250" /> 
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png" alt="Splash Screen" width="250" />
+</p>
 
 readme_content = """
 
@@ -22,23 +24,34 @@ MyMovieBloc is a Flutter application that provides detailed information about mo
 
 ## Getting Started
 
-### Prerequisites
+### Downloading the APK
 
-- Flutter SDK: [Flutter installation guide](https://flutter.dev/docs/get-started/install)
-- Dart SDK
-- Android Studio or Visual Studio Code with Flutter extension
+1. Go to the [Releases page](https://github.com/iqbalnova/MyMovieBloc/releases) of the repository.
+2. Download the latest APK file suitable for your device's architecture.
 
 ## GitHub Actions for APK Release
 
 This project uses GitHub Actions to automate the build and release process for the APKs. The workflow is triggered on push or merge to the \`main\` branch.
 
-### commit with message [skip ci] will skip the github actions
+### Preventing GitHub Actions from Running
+
+If you need to update the \`main\` branch without triggering the GitHub Actions workflow, you can add \`[skip ci]\` or \`[ci skip]\` to your commit message. For example:
+
+```git
+
+```
+
+git commit -m "Update README [skip ci]"
+
+````
+
+This will skip the workflow run for that particular commit.
 
 ### Workflow Configuration
 
 The GitHub Actions workflow file is located at \`.github/workflows/release.yml\`. Below is the configuration used:
 
-\`\`\`yaml
+```yaml
 on:
 push:
 branches: - main
@@ -88,22 +101,7 @@ steps: - uses: actions/checkout@v3
           tag: ${{ env.VERSION }}
           token: ${{ secrets.TOKEN }}
 
-\`\`\`
-
-### Downloading the APK
-
-1. Go to the [Releases page](https://github.com/iqbalnova/MyMovieBloc/releases) of the repository.
-2. Download the latest APK file suitable for your device's architecture.
-
-### Preventing GitHub Actions from Running
-
-If you need to update the \`main\` branch without triggering the GitHub Actions workflow, you can add \`[skip ci]\` or \`[ci skip]\` to your commit message. For example:
-
-\`\`\`sh
-git commit -m "Update README [skip ci]"
-\`\`\`
-
-This will skip the workflow run for that particular commit.
+````
 
 ## Contributing
 
@@ -116,16 +114,8 @@ Contributions are welcome! Please follow these steps:
 5. Push to the branch (\`git push origin feature/your-feature\`).
 6. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
 Feel free to explore and contribute to MyMovieBloc. Happy coding!
-"""
 
-# Write the content to README.md
+```
 
-with open("/mnt/data/README.md", "w") as file:
-file.write(readme_content)
+```

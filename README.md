@@ -1,14 +1,10 @@
-# Content for the README.md file
+# MyMovieBloc
 
 <p float="left">
   <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png" alt="Detail Screen" width="250" />
   <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png" alt="List Screen" width="250" /> 
   <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png" alt="Splash Screen" width="250" />
 </p>
-
-readme_content = """
-
-# MyMovieBloc
 
 MyMovieBloc is a Flutter application that provides detailed information about movies, including cast details, using the Bloc pattern for state management. The project is configured to use GitHub Actions for building and releasing APKs.
 
@@ -37,21 +33,17 @@ This project uses GitHub Actions to automate the build and release process for t
 
 If you need to update the \`main\` branch without triggering the GitHub Actions workflow, you can add \`[skip ci]\` or \`[ci skip]\` to your commit message. For example:
 
-```git
-
 ```
-
 git commit -m "Update README [skip ci]"
-
-````
+```
 
 This will skip the workflow run for that particular commit.
 
 ### Workflow Configuration
 
-The GitHub Actions workflow file is located at \`.github/workflows/release.yml\`. Below is the configuration used:
+The GitHub Actions workflow file is located at .github/workflows/main.yml
 
-```yaml
+```
 on:
 push:
 branches: - main
@@ -101,7 +93,7 @@ steps: - uses: actions/checkout@v3
           tag: ${{ env.VERSION }}
           token: ${{ secrets.TOKEN }}
 
-````
+```
 
 ## Contributing
 
@@ -115,7 +107,3 @@ Contributions are welcome! Please follow these steps:
 6. Open a pull request.
 
 Feel free to explore and contribute to MyMovieBloc. Happy coding!
-
-```
-
-```

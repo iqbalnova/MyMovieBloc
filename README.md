@@ -1,9 +1,9 @@
 # MyMovieBloc
 
 <p float="left">
-  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png" alt="Detail Screen" width="250" />
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png" alt="Detail Screen" width="250" />
   <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/list.png" alt="List Screen" width="250" /> 
-  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/splash.png" alt="Splash Screen" width="250" />
+  <img src="https://github.com/iqbalnova/MyMovieBloc/blob/main/lib/public/detail.png" alt="Splash Screen" width="250" />
 </p>
 
 MyMovieBloc is a Flutter application that provides detailed information about movies, including cast details, using the Bloc pattern for state management. The project is configured to use GitHub Actions for building and releasing APKs.
@@ -29,7 +29,7 @@ MyMovieBloc is a Flutter application that provides detailed information about mo
 
 This project uses GitHub Actions to automate the build and release process for the APKs. The workflow is triggered on push or merge to the \`main\` branch.
 
-### Preventing GitHub Actions from Running
+## Preventing GitHub Actions from Running
 
 If you need to update the \`main\` branch without triggering the GitHub Actions workflow, you can add \`[skip ci]\` or \`[ci skip]\` to your commit message. For example:
 
@@ -39,7 +39,7 @@ git commit -m "Update README [skip ci]"
 
 This will skip the workflow run for that particular commit.
 
-### Workflow Configuration
+## Workflow Configuration
 
 The GitHub Actions workflow file is located at .github/workflows/main.yml
 

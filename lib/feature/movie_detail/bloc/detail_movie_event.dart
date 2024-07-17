@@ -15,3 +15,12 @@ class GetDetailMovieEvent extends DetailMovieEvent {
   @override
   List<Object> get props => [movieId];
 }
+
+class GetCastEvent extends DetailMovieEvent {
+  final int movieId;
+
+  const GetCastEvent({required this.movieId});
+
+  @override
+  List<Object> get props => [movieId];
+}

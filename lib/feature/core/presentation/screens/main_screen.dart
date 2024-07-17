@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mymoviebloc/feature/core/presentation/screens/on_dev_screen.dart';
 import 'package:mymoviebloc/feature/movie/presentation/screens/movie_screen.dart';
 import 'package:mymoviebloc/utils/images.dart';
 import 'package:mymoviebloc/utils/styles.dart';
@@ -153,16 +154,16 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-class OnDevScreen extends StatelessWidget {
-  const OnDevScreen({super.key});
+// class OnDevScreen extends StatelessWidget {
+//   const OnDevScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "ON DEV",
-        style: blackTextStyle,
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Text(
+//         "ON DEV",
+//         style: blackTextStyle,
+//       ),
+//     );
+//   }
+// }

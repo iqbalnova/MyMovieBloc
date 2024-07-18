@@ -1,13 +1,15 @@
 import 'package:get_it/get_it.dart';
 import 'package:mymoviebloc/config/dio_config.dart';
 import 'package:mymoviebloc/data/models/movie/movie_model.dart';
+import 'package:mymoviebloc/utils/credential.dart';
 
 class MovieListServices {
   final ApiClient dio = GetIt.instance<ApiClient>();
 
   Future<List<MovieModel>> getMovieNowPlaying() async {
     try {
-      final response = await dio.apiGet('/movie/now_playing');
+      final response =
+          await dio.apiGet('/movie/now_playing?api_key=${Credential.apiKey}');
 
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['results'];
@@ -24,7 +26,8 @@ class MovieListServices {
 
   Future<List<MovieModel>> getMoviePopular() async {
     try {
-      final response = await dio.apiGet('/movie/popular');
+      final response =
+          await dio.apiGet('/movie/popular?api_key=${Credential.apiKey}');
 
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['results'];

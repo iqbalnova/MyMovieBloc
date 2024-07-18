@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mymoviebloc/config/dio_config.dart';
@@ -34,11 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Platform.isIOS
-          ? null
-          : AppBar(
-              title: const Text(''),
-            ),
+      appBar: null,
       body: Stack(
         children: [
           Center(

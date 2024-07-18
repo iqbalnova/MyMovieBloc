@@ -8,9 +8,9 @@ on:
     ignore:
       - "[skip ci]"
       - "[ci skip]"
-  pull_request:
-    branches:
-      - main
+  # pull_request:
+  #   branches:
+  #     - main
 
 name: Build My Apps
 
@@ -37,7 +37,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --split-per-abi
 
       - name: Extract version from pubspec.yaml
         id: extract_version

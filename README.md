@@ -45,21 +45,24 @@ The GitHub Actions workflow file is located at .github/workflows/main.yml
 
 ```
 on:
-push:
-branches: - main
-paths-ignore: - "\*\*.md" # Ignores pushes that include '[skip ci]' or '[ci skip]' in the commit message
-ignore: - "[skip ci]" - "[ci skip]"
-pull_request:
-branches: - main
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+    ignore:
+      - "[skip ci]"
+      - "[ci skip]"
 
 name: Build My Apps
 
 jobs:
-build:
-if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
-name: Build and Release new apk
-runs-on: ubuntu-latest
-steps: - uses: actions/checkout@v3
+  build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+    name: Build and Release new apk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
       - name: Set up JDK 11
         uses: actions/setup-java@v2
@@ -76,7 +79,7 @@ steps: - uses: actions/checkout@v3
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release --split-per-abi
+        run: flutter build apk --release
 
       - name: Extract version from pubspec.yaml
         id: extract_version
@@ -88,10 +91,10 @@ steps: - uses: actions/checkout@v3
         uses: ncipollo/release-action@v1
         with:
           artifacts: |
-            build/app/outputs/apk/release/app-armeabi-v7a-release.apk
-            build/app/outputs/apk/release/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-release.apk
           tag: ${{ env.VERSION }}
           token: ${{ secrets.TOKEN }}
+
 
 ```
 

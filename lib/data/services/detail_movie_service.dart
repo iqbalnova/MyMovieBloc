@@ -2,13 +2,15 @@ import 'package:get_it/get_it.dart';
 import 'package:mymoviebloc/config/dio_config.dart';
 import 'package:mymoviebloc/data/models/cast/cast_model.dart';
 import 'package:mymoviebloc/data/models/movie/detail_movie.dart';
+import 'package:mymoviebloc/utils/credential.dart';
 
 class DetailMovieService {
   final ApiClient dio = GetIt.instance<ApiClient>();
 
   Future<DetailMovieModel> getDetailMovie({required int movieId}) async {
     try {
-      final response = await dio.apiGet('/movie/$movieId');
+      final response =
+          await dio.apiGet('/movie/$movieId?api_key=${Credential.apiKey}');
 
       if (response.statusCode == 200) {
         final DetailMovieModel movieDetail = DetailMovieModel.fromJson(
@@ -25,7 +27,8 @@ class DetailMovieService {
 
   Future<List<CastModel>> getAllCast({required int movieId}) async {
     try {
-      final response = await dio.apiGet('/movie/$movieId/credits');
+      final response = await dio
+          .apiGet('/movie/$movieId/credits?api_key=${Credential.apiKey}');
 
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['cast'];
